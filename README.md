@@ -99,4 +99,4 @@ It you want to contribute, thank you! Just keep in mind that stability and Linux
 
 ## License
 
-This project is licensed under the GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GPL v3 License - see the [LICENSE.md](LICENSE) file for details
