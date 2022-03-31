@@ -1,19 +1,10 @@
 # Beepin-Buttons
 Plays a sound of your choice upon keypress, counts keystrokes, and provides digital lock light indicators. Windows only for now. 
 
-## Getting Started
+## Installing
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-Download the executable and run 
-
-### Prerequisites
-
-Windows 10.
-
-### Installing
-
-I recommend you read the section titled "How to Count Keypresses" first. 
+You will need a Windows 10 or 11 system. Older versions proabably work but haven't been tested. 
+I also recommend you read the section titled "How to Count Keypresses" first. 
 Download .exe and run. If you get a popup about index errors or something similar, ignore it. This application is still in its teething phases, but works as intended.
 
 The first time you run this application, three things will be created: two folders called "profiles" and "keypers", then a file called "settings.json". Do not modify these.
