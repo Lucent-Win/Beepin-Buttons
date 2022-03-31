@@ -33,7 +33,6 @@ Besides custom sounds, you can "mute" specific keys in advanced settings.
 
 
 ## How to Count Keypresses
-Have you ever read a blurb for a keyboard and read something like: "lasts 5 million keystrokes"? Now you can track that. 
 
 ### A Warning about Keylogging
 
@@ -47,6 +46,8 @@ Beepin' Buttons does not know what words you type, where you type them, nor tran
 
 
 ### Overview of a Keyper
+
+Have you ever read a blurb for a keyboard and read something like: "lasts 5 million keystrokes"? Now you can track that. 
 
 A keyper is a tiny database for recording keystrokes. By default one named "total" is created by the program. It's job is to track all keystrokes you ever make while the application is active. You cannot change anything about this file within the program itself. 
 
