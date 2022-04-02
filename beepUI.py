@@ -917,8 +917,7 @@ class adv_settings(tk.Toplevel):
 
 		self.chk_repeat = tk.Checkbutton(self, 
 		text="Repeat Sound when holding key: ",
-		background=self.settings.fg_color,
-		foreground= self.settings.reg_text_color)
+		background=self.settings.fg_color)
 		self.chk_repeat.grid(column = 1,  row= 0)
 
 
@@ -928,8 +927,7 @@ class adv_settings(tk.Toplevel):
 
 		self.chk_caps = tk.Checkbutton(self, 
 		text="Caps " , variable = self.capbool,
-		background=self.settings.fg_color,
-		foreground= self.settings.reg_text_color)
+		background=self.settings.fg_color)
 		self.chk_caps.configure(command = 
 		lambda: self.settings.show_lock_light("caps", self.capbool.get()))
 		self.chk_caps.grid(column = 0,  row= 1, sticky="w")
@@ -939,8 +937,7 @@ class adv_settings(tk.Toplevel):
 
 		self.chk_num = tk.Checkbutton(self, 
 		text="Num " , variable = self.numbool,
-		background=self.settings.fg_color,
-		foreground= self.settings.reg_text_color)
+		background=self.settings.fg_color)
 
 		self.chk_num.configure(command = 
 		lambda: self.settings.show_lock_light("num", self.numbool.get()))
@@ -952,8 +949,7 @@ class adv_settings(tk.Toplevel):
 		self.chk_scroll = tk.Checkbutton(self, 
 		text="Scroll " , 
 		variable = self.scrbool,
-		background=self.settings.fg_color,
-		foreground= self.settings.reg_text_color)
+		background=self.settings.fg_color)
 
 		self.chk_scroll.configure(command = 
 		lambda: self.settings.show_lock_light("scroll", self.scrbool.get()))
@@ -975,8 +971,7 @@ class adv_settings(tk.Toplevel):
 		text="Silence",
 		padx = 20, 
 		variable=self.mute_keys, 
-		value = 1, background=self.settings.fg_color,
-		foreground= self.settings.reg_text_color)
+		value = 1, background=self.settings.fg_color)
 		self.radio_mute.grid(column = 0, row = 4)
 
 
@@ -986,8 +981,7 @@ class adv_settings(tk.Toplevel):
 		padx = 20, 
 		variable=self.mute_keys, 
 		value = 0,
-		background=self.settings.fg_color,
-		foreground= self.settings.reg_text_color)
+		background=self.settings.fg_color)
 		self.loud_radio.grid(column = 0, row = 5)
 
 
