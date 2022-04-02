@@ -78,7 +78,9 @@ The rightmost panel shows a summary of that keyper's keystrokes. They are sorted
 ### Lock Light Indicators
 
 Beepin' Buttons remebers where you move this bar, so it will reappear in the same place next time you open the application. If you have a certain lock on most of the time, like num lock, you can tell the bar to ignore that indicator. Finally, you can reset its position if it ever goes off screen.
-![bar_example2](https://user-images.githubusercontent.com/102703119/161402579-fd7dd10a-fbdf-4211-8736-56fe17bbcbf4.PNG)
+
+![bar_example2](https://user-images.githubusercontent.com/102703119/161403038-4cad5938-f3e0-417e-b701-591b81da5016.PNG)
+
 
 ### Repeat Protection
 
