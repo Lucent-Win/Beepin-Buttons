@@ -330,8 +330,7 @@ class settingsFrame(tk.Frame):
 		# checked becomes false, unchecked = true 
 		self.chk_mute = tk.Checkbutton(self.fm_settings,
 		text="Mute",
-		background=self.settings.bg_color,
-		foreground= self.settings.reg_text_color)
+		background=self.settings.bg_color)
 
 		self.chk_mute.grid(row=2, column = 0, sticky = "w" )
 		
