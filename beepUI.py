@@ -45,7 +45,9 @@ class lockbar(tk.Toplevel):
 		command= self.__close,
 		bg = "#000000", 
 		activebackground='red',
-		font="bold",fg='white')
+		font="bold",
+		fg='#777777',
+		border=0)
 
 		self.capslbl = tk.Label(self.lock_bar, 
 		image=self.img_caps_off ,
@@ -73,6 +75,7 @@ class lockbar(tk.Toplevel):
 		self.update()
 
 		self.timer = RepeatTimer(self.interval, self.flash)
+		self.timer.daemon = True
 		self.timer.start()
 		
 				
@@ -316,14 +319,20 @@ class settingsFrame(tk.Frame):
 		self.fm_settings.grid(row=0, column=0, padx=0, pady=0, sticky= "n")
 	
 
-		self.btn_mk_adv = tk.Button(self.fm_settings, text = "Advanced")
+		self.btn_mk_adv = tk.Button(self.fm_settings,
+		text = "Advanced",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
 		self.btn_mk_adv.grid(row = 3, column = 0, sticky = "w")
 
 		# bug: when pressing advanced button, this checkbox unchecks
 		# however, the proper value is kept: visual bug only. 
 		# checked becomes false, unchecked = true 
-		self.chk_mute = tk.Checkbutton(self.fm_settings, text="Mute",
-		background=self.settings.bg_color)
+		self.chk_mute = tk.Checkbutton(self.fm_settings,
+		text="Mute",
+		background=self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
+
 		self.chk_mute.grid(row=2, column = 0, sticky = "w" )
 		
 		# the assumption is pygame volume, so the max is multiplied by 100
@@ -546,16 +555,31 @@ class keypersFrame(tk.Frame):
 		self.lbl_title.grid(column=0, row=0, sticky="W", columnspan=4)
 
 		# row 1
-		self.btn_del_ky = tk.Button(self.fm_keypers,text = "x")
+		self.btn_del_ky = tk.Button(self.fm_keypers,
+		text = "x",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
+
 		self.btn_del_ky.grid(row = 1, column = 0, sticky = "w")
 
-		self.btn_add_ky = tk.Button(self.fm_keypers,text = "+")
+		self.btn_add_ky = tk.Button(self.fm_keypers,
+		text = "+",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
+
 		self.btn_add_ky.grid(row = 1, column = 1, sticky = "w")
 
-		self.btn_rnm_key = tk.Button(self.fm_keypers,text = "Rename")
+		self.btn_rnm_key = tk.Button(self.fm_keypers,
+		text = "Rename",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
+
 		self.btn_rnm_key.grid(row = 1, column = 2, sticky = "w")
 
-		self.btn_wipe_ky = tk.Button(self.fm_keypers,text = "Wipe")
+		self.btn_wipe_ky = tk.Button(self.fm_keypers,
+		text = "Wipe",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
 		self.btn_wipe_ky.grid(row = 1, column = 3, sticky = "w")
 
 		# row 2
@@ -622,10 +646,17 @@ class keypersFrame(tk.Frame):
 	def __mk_rename_popup(self):
 		self.popup = entry_popup(self.fm_keypers, "Rename Keyper")
 		self.popup.bind_entry(self.del_rename_popup)
+		x = self.ky_listbox.winfo_rootx()
+		y = self.ky_listbox.winfo_rooty()
+		self.popup.geometry("+%d+%d" %(x, y))
 
 	def __mk_new_popup(self):
 		self.popup = entry_popup(self.fm_keypers, "Add Keyper")
 		self.popup.bind_entry(self.del_add_popup)
+		window_geometry = str(self.popup.winfo_width()) + 'x' + str(self.popup.winfo_height() ) + '+' + str(self.ky_listbox.winfo_x()) + '+' + str(self.ky_listbox.winfo_y()) #Creates a geometric string argument
+		x = self.ky_listbox.winfo_rootx()
+		y = self.ky_listbox.winfo_rooty()
+		self.popup.geometry("+%d+%d" %(x, y))
 
 	def del_rename_popup(self, lol):
 		if self.popup != None:
@@ -642,12 +673,14 @@ class keypersFrame(tk.Frame):
 	def __mk_warn_popup(self):
 		self.warn_popup = warn_popup(self.fm_keypers, str("Delete Keyper?"))
 		self.warn_popup.bind_yes(self.del_warn_popup)
+		x = self.ky_listbox.winfo_rootx()
+		y = self.ky_listbox.winfo_rooty()
+		self.warn_popup.geometry("+%d+%d" %(x, y))
 
 	def del_warn_popup(self):
 		if self.warn_popup != None:
 			self.settings.del_ky()
 			self.warn_popup.destroy()
-
 
 
 
@@ -872,44 +905,56 @@ class adv_settings(tk.Toplevel):
 		self.settings = settings 
 		self.grab_set() 
 		self.settings.mod_keys = True;
-		self.configure( background=self.settings.bg_color)
+		self.configure( background=self.settings.fg_color)
 
 
 		# row 0
-		self.btn_reset_lockbar = tk.Button(self, text = "Reset Lock Light bar")
-		self.btn_reset_lockbar.grid(column = 0, row = 0)
+		self.btn_reset_lockbar = tk.Button(self,
+		text = "Reset Lock Light bar",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
+		self.btn_reset_lockbar.grid(column = 0, row = 0, padx= 4, pady = 4)
 
 		self.chk_repeat = tk.Checkbutton(self, 
 		text="Repeat Sound when holding key: ",
-		background=self.settings.bg_color)
+		background=self.settings.fg_color,
+		foreground= self.settings.reg_text_color)
 		self.chk_repeat.grid(column = 1,  row= 0)
 
 
 		# row 1
 		#chkboxes needs to be configured before grid, or the value is incorrect. 
 		self.capbool = tk.BooleanVar()
+
 		self.chk_caps = tk.Checkbutton(self, 
 		text="Caps " , variable = self.capbool,
-		background=self.settings.bg_color)
+		background=self.settings.fg_color,
+		foreground= self.settings.reg_text_color)
 		self.chk_caps.configure(command = 
 		lambda: self.settings.show_lock_light("caps", self.capbool.get()))
 		self.chk_caps.grid(column = 0,  row= 1, sticky="w")
 
 
 		self.numbool = tk.BooleanVar()
+
 		self.chk_num = tk.Checkbutton(self, 
 		text="Num " , variable = self.numbool,
-		background=self.settings.bg_color)
+		background=self.settings.fg_color,
+		foreground= self.settings.reg_text_color)
+
 		self.chk_num.configure(command = 
 		lambda: self.settings.show_lock_light("num", self.numbool.get()))
 		self.chk_num.grid(column = 1,  row= 1, sticky="w")
 		
 		
 		self.scrbool = tk.BooleanVar()
+
 		self.chk_scroll = tk.Checkbutton(self, 
 		text="Scroll " , 
 		variable = self.scrbool,
-		background=self.settings.bg_color)
+		background=self.settings.fg_color,
+		foreground= self.settings.reg_text_color)
+
 		self.chk_scroll.configure(command = 
 		lambda: self.settings.show_lock_light("scroll", self.scrbool.get()))
 		self.chk_scroll.grid(column = 2,  row= 1, sticky="w")
@@ -920,7 +965,7 @@ class adv_settings(tk.Toplevel):
 		# row 4
 		self.lbl_key = tk.Label(self, 
 		text = "Keys:", 
-		background=self.settings.bg_color,
+		background=self.settings.fg_color,
 		foreground= self.settings.high_text_color)
 		self.lbl_key.grid(column = 1, row = 4)
 
@@ -930,7 +975,8 @@ class adv_settings(tk.Toplevel):
 		text="Silence",
 		padx = 20, 
 		variable=self.mute_keys, 
-		value = 1, background=self.settings.bg_color)
+		value = 1, background=self.settings.fg_color,
+		foreground= self.settings.reg_text_color)
 		self.radio_mute.grid(column = 0, row = 4)
 
 
@@ -940,11 +986,15 @@ class adv_settings(tk.Toplevel):
 		padx = 20, 
 		variable=self.mute_keys, 
 		value = 0,
-		background=self.settings.bg_color)
+		background=self.settings.fg_color,
+		foreground= self.settings.reg_text_color)
 		self.loud_radio.grid(column = 0, row = 5)
 
 
-		self.btn_clear_keys = tk.Button(self, text = "Clear")
+		self.btn_clear_keys = tk.Button(self,
+		text = "Clear",
+		background = self.settings.bg_color,
+		foreground= self.settings.reg_text_color)
 		self.btn_clear_keys.grid(column = 2, row = 5, sticky="w")
 
 

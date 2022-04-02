@@ -14,6 +14,15 @@ import pygame  # GNU Lesser General Public License v3.0
 from pynput import keyboard # GNU Lesser General Public License v3.0
 
 
+
+
+#			 UPDATES NOW, NEXT VERSION MUST 
+#   Close all threads properly
+#   Application Icon when opened. 
+# add padding to reset label
+# remove border from x button lockbar 
+
+
 class beepin:
 	"""
 	Class that makes your buttons beep!
@@ -28,7 +37,7 @@ class beepin:
 	max_vol = 1
 	min_vol = 0
 	
-	fg_color = "#3e4254"
+	fg_color = "#586087"
 	bg_color = "#4d5877" 
 	dk_color = "#242938"
 
@@ -43,8 +52,10 @@ class beepin:
 
 
 	root = tk.Tk() 
-	root.title("beepin' buttons' Ver 2.0 -- by Lucent Win")
-	root.resizable(False, False)	
+	root.title("beepin' buttons' Ver 2.48 -- by Lucent Win")
+
+	icon = tk.PhotoImage(master=root, data='iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABb2lDQ1BpY2MAACiRdZE7SwNBFIU/Y0TRSARTiFhsEcXCgCiIpUTQRi1iBF/N7maTCLtx2U0QsRVsLAQL0cZX4T/QVrBVEARFELHyB/hqRNY7JpAgOsvs/Tgz5zJzBkITtun44X5wCkUvNZ7UZufmtcZnwoSIMUSbbvru5PRYmn/Hxy11qt4kVK//9/05WjKWb0Jdk/CQ6XpF4RHhiZWiq3hTOGbm9YzwgXCfJwcUvlS6UeYnxbkyvyn20qlRCKmeWq6GjRo2854j3Cscd+ySWTmPuknEKsxMS+2U2YVPinGSaBiUWMKmSEJqQTL729f/45tiWTym/F1W8cSRIy/ePlFL0tWSmhXdks9mVeX+O08/OzhQ7h5JQsNjELx2Q+M2fG0FwedhEHwdQf0DnBeq/mXJafhd9K2qFt+H6DqcXlQ1YwfONqDj3tU9/UeqlxnKZuHlBFrnoP0amhfKWVXWOb6D9Jo80RXs7kGP7I8ufgP45GgH0CvLIQAAAAlwSFlzAAALEgAACxIB0t1+/AAAAsdJREFUeAHtm+FuwyAMhNdpz9WH74t18qSLjGMTEs4pYdkfCMH23YfLpkl9fNV/3vXXl3n7iJRGL2Yxbn2v/NqFWY2HIDQA1/zr9bLBl3p+Pp+R3j/vIYCrG7euHRAFgOL0ZzMPGB6Eb7zEOKt58ed5EwDF6QPEPxnfRQd4hGYDYT0WAGYz2+Lnp2UTe49zGS0l7AktL5ImpwGomdbe7L5sIOkArCFttmWO+CwQaXeACIf4FqNbe5i5dK2UDtgSWzvNWqy8q8VqY63zFABR8Rbx2FMDEeU/sk7/CETCYaxVZLQ/yt+a1+6jAojERWasGPscxUV1bHzLMxWAVzAy4e311nrjvZx6jQbAOxWWeFYebRxzGgAkxMgWbfN5wFF7z5gGYI+IT+69AXyS/gi17w7IOgXWJQV97HzIS+sAe0ujwOgjDYBnlHVqrDyeRioArwt6xffGe6b1GhWAJGZBEOPZ5kUvHYAk9X72GDrDODSmAPC6AAVr5vZAQr7eMe0fIgIhMhut95o5Ep/SARBS6wTs2RolByNPVCetA1AQ4veeOuKQJ2tMBwDh2lAEQ+9BXPZ4GgBt5BNGdX09T70DdKFR5zeAUU/mLF13B7BIy80e3e69NbLyii56B2SC0CBZv0noACCSdWqsPNBlxzQAUqhXfG+8Nes90/4Qkpb0BHtrtfb19nvCWWs0ACIogmDF9pqsAbS1tp7pHwGmOE88Oz+1AyAYIntPGvlkRE69xpjTO0CLYolm5dHaME/pACSXEeKPdANidT72PB0ABGszNRh6H2Izx9MAaBNnm9S17Tz1DrDFRny+AYx4KmdqKjqgdjmdKSqzlvUoAPQXpzJrj5j7UXSAKLSERlR9VJPnTZ9+8d2hkX5VHTWs4xzzxdfmZG8BAMFXB+EYh7UVgBACIiYal85fJsac2w1mzxUfV35XC8bVLCBCn7+2I7hkoheA/QAAAABJRU5ErkJggg==PS')
+	root.wm_iconphoto(True, icon)	
 	root.configure(background= bg_color) 
 
 
@@ -54,6 +65,7 @@ class beepin:
 		self.pnl_adv_settings = None
 		self.lockbar = None
 		self.key_silencing = False
+
 		self.ind_settings = {
 		"caps" : True ,
 		"num": True , 
@@ -65,7 +77,9 @@ class beepin:
 		"curr_vol": 2 , 
 		"muted": False, 
 		"rpt_protection": True}
+
 		self.muted_keys = { } 	 
+
 		self.defaults = {"profile":"" , "keyper":""} 
 
 		# initialize
@@ -132,8 +146,8 @@ class beepin:
 		self.pnl_adv_settings = beepUI.adv_settings(self.root, self)
 		self.send_muted_keys()
 		self.mod_keys = True
-		print("Modded " + str(self.mod_keys))
-
+		window_geometry = str(self.root.winfo_width()) + 'x' + str(self.root.winfo_height() ) + '+' + str(self.root.winfo_x()) + '+' + str(self.root.winfo_y()) #Creates a geometric string argument
+		self.pnl_adv_settings.geometry(window_geometry)
 
 	def toggle_rpt_prot(self):
 		'''
@@ -303,19 +317,9 @@ class beepin:
 		self.kyhive.load(keyper)
 		self.defaults["keyper"] = keyper
 		self.frame_ky.set_current(str(self.kyhive.current_keyper))
+		self.update_ky_dt_frame()
 		
-		
-		list_keys = list(self.kyhive.key_data.keys())
-		list_key_count = list(self.kyhive.key_data.values())
-		ls = []
-		i = 0
-		for element in list_keys:
-			ls.append(str(element) + " : " + str(list_key_count[i]))
-			i += 1
 
-		self.frame_dt_ky.update(ls)		
-		stat_dict = self.kyhive.get_summary(self.kyhive.current_keyper)
-		self.frame_dt_ky.set_stats(stat_dict["least"], stat_dict["most"], stat_dict["total"])
 		self.save()
 		
 		
@@ -330,6 +334,20 @@ class beepin:
 		stat_dict = self.kyhive.get_summary(self.kyhive.current_keyper)
 		self.frame_dt_ky.set_stats(stat_dict["least"], stat_dict["most"], stat_dict["total"])
 		self.save()
+
+	def update_ky_dt_frame(self):
+		list_keys = list(self.kyhive.key_data.keys())
+		list_key_count = list(self.kyhive.key_data.values())
+		ls = []
+		i = 0
+		for element in list_keys:
+			ls.append(str(element) + " : " + str(list_key_count[i]))
+			i += 1
+
+		self.frame_dt_ky.update(ls)		
+		stat_dict = self.kyhive.get_summary(self.kyhive.current_keyper)
+		self.frame_dt_ky.set_stats(stat_dict["least"], stat_dict["most"], stat_dict["total"])
+
 
 	
 # KEY BASED METHODS
@@ -359,9 +377,13 @@ class beepin:
 			
 		if self.key_silencing == True:
 			self.add_silent_key(key)
+		
 
 		if self.key_down == False:
 			self.kyhive.on_press(key)
+
+		self.update_ky_dt_frame()
+
 		
 		if self.vol_settings["muted"] == False and key not in self.muted_keys.keys() and self.key_down == False:
 			try:
@@ -476,7 +498,8 @@ class beepin:
 
 		self.kyhive.save()
 		self.save()
-
+		
+		pygame.mixer.stop()
 		pygame.quit()
 		self.lockbar.destroy()
 		self.root.destroy()

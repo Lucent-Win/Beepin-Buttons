@@ -1,3 +1,7 @@
+
+# Entry point script  
+# name of this file will reflect name of application executable file
+
 from beepin import beepin
 from pynput import keyboard # GNU Lesser General Public License v3.0
 

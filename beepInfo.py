@@ -270,7 +270,6 @@ class keyperhive:
 			self.total_key_data.update({save_key: 1})
 		else:
 			self.total_key_data[save_key] += 1
-		self.save()
 			  
 		
 	
