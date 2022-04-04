@@ -387,12 +387,13 @@ class beepin:
 		
 		if self.vol_settings["muted"] == False and key not in self.muted_keys.keys() and self.key_down == False:
 			try:
+				if self.vol_settings["rpt_protection"] == True:
+					self.key_down = True
 				song_path = json_io.fix_dir(self.kbmixer.random_sound(key))
 				song = pygame.mixer.Sound(song_path)
 				song.set_volume(self.vol_settings["curr_vol"])
 				song.play()
-				if self.vol_settings["rpt_protection"] == True:
-					self.key_down = True
+
 			except Exception as e:
 				pass
 		else: # debugging print statements. 
