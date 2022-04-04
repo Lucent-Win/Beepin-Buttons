@@ -15,7 +15,7 @@ pip install pyinstaller
 ```
 then compile the source code into an executable (after loading your preferred directory): 
 ```
-pyinstaller "beepin buttons.py" --onefile --uac_admin -w --icon=appicon.ico
+pyinstaller "beepin buttons.py" --onefile --uac-admin -w --icon=appicon.ico
 ```
 
 The first time you run it, three things will be created: two folders called "profiles" and "keypers", then a file called "settings.json". Do not modify these.
